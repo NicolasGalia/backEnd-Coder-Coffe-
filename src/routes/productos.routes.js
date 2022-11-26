@@ -7,15 +7,15 @@ import {
   borrarProducto,
 } from "../controllers/productos.controladores";
 import { check } from "express-validator";
-import validarJWT from "../helpers/validar-jwt";
+// import validarJWT from "../helpers/validar-jwt";
 
 const router = Router();
 
 router
-  .route("/productos")
+  .route("/cafe")
   .get(listarProductos)
   .post(
-    [ validarJWT,
+    [ 
       check("nombreProducto", "el nombre del producto es obligatario")
         .notEmpty()
         .isLength({ min: 2, max: 50 })
@@ -43,9 +43,9 @@ router
     crearProducto
   );
 router
-  .route("/productos/:id")
+  .route("/cafe/:_id")
   .get(obtenerProductos)
-  .put([ validarJWT,
+  .put([
     check("nombreProducto", "el nombre del producto es oblitario")
         .notEmpty()
         .isLength({ min: 2, max: 50 })
@@ -70,6 +70,6 @@ router
         .isIn(["Bebidas", "Almuerzos/Cenas", "Desayunos/Meriendas", "Postres"])
         .withMessage("La categoria debe ser valida"),
   ],editarProducto)
-  .delete(validarJWT, borrarProducto);
+  .delete(borrarProducto);
 
 export default router;
