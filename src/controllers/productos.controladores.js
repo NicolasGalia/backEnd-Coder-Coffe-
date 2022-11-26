@@ -32,3 +32,32 @@ export const obtenerProductos = async (req, res) => {
       res.status(404).json({mensaje: 'error al busca los producto'})
     }
   };
+
+
+  export const crearProducto = async (req, res) => {
+    try {
+      //manejar los errores de la validacion 
+      const errors = validationResult(req);
+      // console.log(errors.isEmpty()) devuelve false si hay errores 
+  if(!errors.isEmpty()){
+  return res.status(400).json({
+      errors: errors.array()
+  })
+  }
+      // console.log(req.body);
+      //validar los datos del objeto
+  
+      const productoNuevo = new Producto(req.body);
+      //guarda ese objeto en la base de datos
+      await productoNuevo.save();
+  
+      res.status(201).json({
+        mensaje: "el producto fue creado correctamente",
+      });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(404)
+        .json({ mensaje: "error al intentar agregar un nuevo producto" });
+    }
+  };
