@@ -7,7 +7,6 @@ export const listarProductos = async (req, res) => {
 const Productos = await Producto.find();
     res.status(200).json(Productos);
   } catch (error) {
-    console.log(error);
     res.status(404).json({mensaje: 'error al busca los productos'})
   }
 };
@@ -18,7 +17,6 @@ export const obtenerProductos = async (req, res) => {
       res.status(200).json(productoBuscado);
   
     } catch (error) {
-      console.log(error);
       res.status(404).json({mensaje: 'error al busca los producto'})
     }
   };
