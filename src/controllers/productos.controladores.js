@@ -78,7 +78,7 @@ export const obtenerProductos = async (req, res) => {
             mensaje: 'error al intentar editar un producto'
         })
     }
-    }
+    };
 
 export const borrarProducto  = async (req, res) => {
         try {
