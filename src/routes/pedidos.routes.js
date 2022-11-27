@@ -4,6 +4,7 @@ import { check } from "express-validator";
 import {
   consultarPedido,
   editarPedido,
+  generarPedido,
   limpiarPedido,
 } from "../controllers/pedido.controladores";
 import { generarPedidos } from "../controllers/pedidos.controladores";
@@ -38,7 +39,14 @@ router
   );
 
 router
-  .route("/pedidos/:id")
+  .route("/pedido")
+  .post(
+    [
+      check("producto", "El pedido debe tener productos").notEmpty(),
+      check("usuarioId", "El pedido debe tener un comprador").notEmpty(),
+    ],
+    generarPedido
+  )
   .put(
     [
       check("productos", "El pedido debe tener productos").notEmpty(),

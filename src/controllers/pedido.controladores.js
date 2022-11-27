@@ -43,3 +43,27 @@ export const limpiarPedido = async (req, res)=>{
         }
         };
 
+
+        // AGREGAR PRODUCTO
+
+        export const generarPedido = async (req, res) => {
+          try { 
+            const errors = validationResult(req);
+        if(!errors.isEmpty()){
+        return res.status(400).json({
+            errors: errors.array()
+        })
+        }
+            const pedidoNuevo = new Pedido(req.body);
+            await pedidoNuevo.save();
+        
+            res.status(201).json({
+              mensaje: "El producto fue enviado correctamente",
+            });
+          } catch (error) {
+            console.log(error);
+            res
+              .status(404)
+              .json({ mensaje: "Error al enviar el producto" });
+          }
+        };

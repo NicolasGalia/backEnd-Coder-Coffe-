@@ -9,8 +9,8 @@ export const generarPedidos = async (req, res) => {
       errors: errors.array()
   })
   }
-      const pedidoNuevo = new Pedidos(req.body);
-      await pedidoNuevo.save();
+      const pedidosNuevo = new Pedidos(req.body);
+      await pedidosNuevo.save();
   
       res.status(201).json({
         mensaje: "El pedido fue enviado correctamente",
@@ -22,3 +22,17 @@ export const generarPedidos = async (req, res) => {
         .json({ mensaje: "Error al enviar el pedido" });
     }
   };
+
+  export const editarPedidos  = async (req, res) => {
+    try {
+    await Producto.findByIdAndUpdate(req.params.id, req.body)
+    res.status(200).json({
+        mensaje: 'El pedido fue editado correctamente'
+    })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ 
+            mensaje: 'Error al intentar editar pedido'
+        })
+    }
+    };

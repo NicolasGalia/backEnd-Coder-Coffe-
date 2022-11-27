@@ -1,10 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 
 const pedidoSchema = new Schema({
-    productos:{
-        type: String,
-        required: true,
-    },
+    productos:[],
     usuarioId:{
         type: String,
         required: true,
