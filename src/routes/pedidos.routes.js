@@ -19,11 +19,11 @@ router
       check("nombre", "Nombre invalido").notEmpty(),
       check("apellido", "Apellido invalido").notEmpty(),
       check("email", "Email invalido").notEmpty(),
-      check("apellido", "Apellido invalido").notEmpty(),
+      check("productos", "Debe poseer productos").notEmpty(),
       check("total", "El total del pedido es obligatorio")
         .notEmpty()
         .isNumeric()
-        .withMessage("El total debe ser numerico")
+        .withMessage("El total debe ser numèrico")
         .custom((value) => {
           if (value >= 1 && value <= 100000) {
             return true;
@@ -31,7 +31,6 @@ router
             throw new Error("El total debe estar entre 1 y 100000");
           }
         }),
-      check("idPedido", "El id del pedido es obligatorio").notEmpty(),
       check("estado", "El estado del pedido es obligatorio")
         .notEmpty()
         .isIn(["pendiente", "entregado"])

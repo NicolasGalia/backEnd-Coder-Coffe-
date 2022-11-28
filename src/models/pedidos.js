@@ -1,12 +1,5 @@
 import mongoose, {Schema} from "mongoose";
 
-const Productos = new Schema({ nombre: String,
-apellido: String,
-email: String,
-productos: String,
-total: Number,
-estado: String});
-
 const pedidosSchema = new Schema({
     nombre:{
         type: String,
@@ -27,8 +20,7 @@ const pedidosSchema = new Schema({
         minLength: 2
     },
     productos:{
-
-        type: [Productos],
+        type: String,
         required: true,
     },
     total:{
