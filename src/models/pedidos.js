@@ -1,26 +1,39 @@
 import mongoose, {Schema} from "mongoose";
 
+const Productos = new Schema({ nombre: String,
+apellido: String,
+email: String,
+productos: String,
+total: Number,
+estado: String});
+
 const pedidosSchema = new Schema({
-    productos:{
-        type: String,
-        required: true,
-    },
-    usuarioId:{
+    nombre:{
         type: String,
         required: true,
         maxLength: 50,
         minLength: 2
     },
+    apellido:{
+        type: String,
+        required: true,
+        maxLength: 50,
+        minLength: 2
+    },
+    email:{
+        type: String,
+        required: true,
+        maxLength: 50,
+        minLength: 2
+    },
+    productos:{
+
+        type: [Productos],
+        required: true,
+    },
     total:{
         type: Number,
         required: true,
-    },
-    idPedido:{
-        type: String,
-        required: true,
-        unique: true,
-        maxLength: 60,
-        minLength: 2
     },
     estado:{
         type: String,

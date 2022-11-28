@@ -16,8 +16,10 @@ router
   .get(consultarPedido)
   .post(
     [
-      check("productos", "El pedido debe tener productos").notEmpty(),
-      check("usuarioId", "El pedido debe tener un comprador").notEmpty(),
+      check("nombre", "Nombre invalido").notEmpty(),
+      check("apellido", "Apellido invalido").notEmpty(),
+      check("email", "Email invalido").notEmpty(),
+      check("apellido", "Apellido invalido").notEmpty(),
       check("total", "El total del pedido es obligatorio")
         .notEmpty()
         .isNumeric()
