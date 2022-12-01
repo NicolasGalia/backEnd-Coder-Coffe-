@@ -39,4 +39,5 @@ router
     generarPedidos
   );
 
+  export default router;
 
