@@ -46,7 +46,7 @@ router
   .route("/cafe/:_id")
   .get(obtenerProductos)
   .put([
-    check("nombreProducto", "el nombre del producto es oblitario")
+    check("nombreProducto", "el nombre del producto es obligatorio")
         .notEmpty()
         .isLength({ min: 2, max: 50 })
         .withMessage("el producto debe tener entre 2 y 50 caracteres"),

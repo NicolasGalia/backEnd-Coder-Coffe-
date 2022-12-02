@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { crearUsuario, login } from "../controllers/usuarios.controllers";
+import { crearUsuario, login, listarUsuarios, obtenerUsuarios, borrarUsuarios } from "../controllers/usuarios.controllers";
 
 const router = Router();
 
@@ -20,6 +20,7 @@ router
   );
 router
   .route("/nuevo")
+  .get(listarUsuarios)
   .post(
     [
       check("nombre", "El nombre es obligatorio").not().isEmpty(),
@@ -33,5 +34,11 @@ router
     ],
     crearUsuario
   );
+
+  router
+  .route("/nuevo/:_id")
+  .get(obtenerUsuarios)  
+  .delete(borrarUsuarios);
+
 
 export default router;
