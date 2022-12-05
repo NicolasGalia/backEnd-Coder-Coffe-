@@ -21,6 +21,7 @@ export const login = async (req, res) => {
     //verificar si el email ya existe
     let usuario = await Usuario.findOne({ email }); //devulve un null
     if (!usuario) {
+
       //si el usuario existe
       return res.status(400).json({
         mensaje: "Correo o password invalido - correo",
@@ -59,6 +60,7 @@ export const crearUsuario = async (req, res) => {
     const errors = validationResult(req);
     // errors.isEmpty() devuelve false si hay errores
     if (!errors.isEmpty()) {
+      console.log(errors)
       return res.status(400).json({
         errors: errors.array(),
       });
