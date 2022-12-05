@@ -1,14 +1,15 @@
 import Pedido from "../models/pedido";
 import{validationResult} from 'express-validator';
+import usuarioFalso from "../../usuario";
 
 export const consultarPedido = async (req, res) => {
     try {
   
-  const PedidoBD = await Pedido.find();
-      res.status(200).json(PedidoBD);
+      let pedidoBD = await Pedido.findOne(req.body);
+      res.status(200).json(pedidoBD);
     } catch (error) {
       console.log(error);
-      res.status(404).json({mensaje: 'Errir al consultar pedido'})
+      res.status(404).json({mensaje: 'Error al consultar pedido'})
     }
   };
 
@@ -31,14 +32,14 @@ export const limpiarPedido = async (req, res)=>{
 
     export const editarPedido  = async (req, res) => {
         try {
-        await Producto.findByIdAndUpdate(req.params.id, req.body)
-        res.status(200).json({
+        await Pedido.findByIdAndUpdate(req.params.id, req.body)
+        res.status(201).json({
             mensaje: 'El pedido fue editado correctamente'
         })
         } catch (error) {
             console.log(error);
             res.status(400).json({ 
-                mensaje: 'Error al intentar editar pedido'
+                mensaje: 'Error al intentar editar el pedido'
             })
         }
         };
