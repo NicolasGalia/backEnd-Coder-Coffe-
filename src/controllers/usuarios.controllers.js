@@ -7,9 +7,7 @@ import generarJWT from '../helpers/jwt';
 export const login = async (req, res) => {
   console.log(req.body)
   try {
-    // manejar los errores de la validacion
     const errors = validationResult(req);
-    // errors.isEmpty() devuelve false si hay errores
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
