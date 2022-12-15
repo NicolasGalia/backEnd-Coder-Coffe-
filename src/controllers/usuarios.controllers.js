@@ -97,3 +97,40 @@ export const crearUsuario = async (req, res) => {
     });
   }
 };
+
+export const listarUsuarios = async (req, res) => {
+  try {
+
+const Usuarios = await Usuario.find();
+    res.status(200).json(Usuarios);
+  } catch (error) {
+    res.status(404).json({mensaje: 'Error al busca los usuarios'})
+  }
+};
+
+export const obtenerUsuarios = async (req, res) => {
+  try {
+      const id = req.params._id;
+    const usuarioBuscado = await Usuario.findById(id);
+    console.log(usuarioBuscado)
+    res.status(200).json(usuarioBuscado);
+
+  } catch (error) {
+    res.status(404).json({mensaje: 'error al buscar los usuarios'})
+  }
+};
+
+
+export const borrarUsuarios  = async (req, res) => {
+  try {
+  await Usuario.findByIdAndDelete(req.params._id);
+  res.status(200).json({
+      mensaje: 'el usuario fue borrado exitosamente'
+  })
+  } catch (error) {
+      console.log(error);
+      res.status(404).json({ 
+          mensaje: 'error al intentar borrar un usuario'
+      })
+  }
+  }
