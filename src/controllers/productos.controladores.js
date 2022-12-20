@@ -7,7 +7,10 @@ export const listarProductos = async (req, res) => {
 const Productos = await Producto.find();
     res.status(200).json(Productos);
   } catch (error) {
-    res.status(404).json({mensaje: 'error al busca los productos'})
+
+    console.log(error);
+    res.status(404).json({mensaje: 'Error al buscar los productos'})
+
   }
 };
 
@@ -19,7 +22,10 @@ export const obtenerProductos = async (req, res) => {
       res.status(200).json(productoBuscado);
   
     } catch (error) {
-      res.status(404).json({mensaje: 'error al busca los producto'})
+
+      console.log(error);
+      res.status(404).json({mensaje: 'Error al buscar los producto'})
+
     }
   };
 
@@ -36,13 +42,13 @@ export const obtenerProductos = async (req, res) => {
       await productoNuevo.save();
   
       res.status(201).json({
-        mensaje: "el producto fue creado correctamente",
+        mensaje: "El producto fue creado correctamente",
       });
     } catch (error) {
       console.log(error);
       res
         .status(404)
-        .json({ mensaje: "error al intentar agregar un nuevo producto" });
+        .json({ mensaje: "Error al intentar agregar un nuevo producto" });
     }
   };
 
@@ -50,12 +56,12 @@ export const obtenerProductos = async (req, res) => {
     try {
     await Producto.findByIdAndUpdate(req.params._id, req.body)
     res.status(200).json({
-        mensaje: 'el producto fue editado correctamente'
+        mensaje: 'El producto fue editado correctamente'
     })
     } catch (error) {
         console.log(error);
         res.status(400).json({ 
-            mensaje: 'error al intentar editar un producto'
+            mensaje: 'Error al intentar editar un producto'
         })
     }
     };
@@ -64,12 +70,12 @@ export const borrarProducto  = async (req, res) => {
         try {
         await Producto.findByIdAndDelete(req.params._id);
         res.status(200).json({
-            mensaje: 'el producto fue borrado exitosamente'
+            mensaje: 'El producto fue borrado exitosamente'
         })
         } catch (error) {
             console.log(error);
             res.status(404).json({ 
-                mensaje: 'error al intentar borrar un producto'
+                mensaje: 'Error al intentar borrar un producto'
             })
         }
         }
