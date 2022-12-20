@@ -1,3 +1,4 @@
+
 import jwt from "jsonwebtoken";
 
 const validarJWT = (req, res, next) => {
@@ -25,3 +26,4 @@ const validarJWT = (req, res, next) => {
 };
 
 export default validarJWT;
+r

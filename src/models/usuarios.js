@@ -1,6 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 
 
+
 const usuarioSchema = new Schema({
 
     nombre:{
@@ -42,5 +43,4 @@ const usuarioSchema = new Schema({
 });
 
 const Usuario = mongoose.model("usuario", productoSchema);
-
 export default Usuario;

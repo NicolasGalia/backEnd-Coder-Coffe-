@@ -1,3 +1,4 @@
+
 import jwt from "jsonwebtoken";
 
 const generarJWT = (uid, nombre) => {
@@ -23,3 +24,4 @@ const generarJWT = (uid, nombre) => {
 };
 
 export default generarJWT;
+

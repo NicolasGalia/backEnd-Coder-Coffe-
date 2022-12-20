@@ -7,15 +7,18 @@ import {
   borrarProducto,
 } from "../controllers/productos.controladores";
 import { check } from "express-validator";
+// import validarJWT from "../helpers/validar-jwt";
 
 const router = Router();
 
 router
-  .route("/productos")
+  .route("/cafe")
   .get(listarProductos)
   .post(
+
     [
       check("nombreProducto", "El nombre del producto es obligatario")
+
         .notEmpty()
         .isLength({ min: 2, max: 50 })
         .withMessage("El producto debe tener entre 2 y 50 caracteres"),
@@ -36,16 +39,18 @@ router
         .withMessage("Debe enviar una URL valida"),
       check("categoria", "La categoria del producto es obligatoria")
       .notEmpty()
-        .isIn(["bebida-fria", "bebida-caliente", "dulce", "salado"])
+        .isIn(["Bebidas", "Almuerzos/Cenas", "Desayunos/Meriendas", "Postres"])
         .withMessage("La categoria debe ser valida"),
     ],
     crearProducto
   );
 router
-  .route("/productos/:id")
+  .route("/cafe/:_id")
   .get(obtenerProductos)
   .put([
+
     check("nombreProducto", "El nombre del producto es obligatorio")
+
         .notEmpty()
         .isLength({ min: 2, max: 50 })
         .withMessage("El producto debe tener entre 2 y 50 caracteres"),
@@ -66,7 +71,7 @@ router
         .withMessage("Debe enviar una URL valida"),
       check("categoria", "La categoria del producto es obligatoria")
       .notEmpty()
-        .isIn(["bebida-fria", "bebida-caliente", "dulce", "salado"])
+        .isIn(["Bebidas", "Almuerzos/Cenas", "Desayunos/Meriendas", "Postres"])
         .withMessage("La categoria debe ser valida"),
   ],editarProducto)
   .delete(borrarProducto);
