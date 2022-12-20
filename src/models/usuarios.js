@@ -1,33 +1,46 @@
 import mongoose, {Schema} from "mongoose";
 
+
+
 const usuarioSchema = new Schema({
+
     nombre:{
         type: String,
-        maxlength: 30,
-        required: true
+        required: true,
+        unique: true,
+        maxLength: 100,
+        minLength: 2
     },
     apellido:{
         type: String,
-        maxlength: 30,
-        required: true
+        required: true,
+        unique: true,
+        maxLength: 100,
+        minLength: 2
+    },
+    email:{
+        type: String ,
+        required: true,
+        lowercase: true,
+        maxLength: 80,
+        minLength: 2
     },
     userName:{
         type: String,
-        maxlength: 30,
-        required: true
+        required: true,
+        unique: true,
+        maxLength: 50,
+        minLength: 2
     },
-    email:{
-        type: String,
-        maxlength: 300,
-        unique:true,
-        required:true
-    },
+
     password:{
         type: String,
-        required:true
-    },
+        required: true,
+        unique: true,
+        minLength: 8,
+        maxLength:30
+    }
 });
 
-const Usuario = mongoose.model('usuario', usuarioSchema);
-
+const Usuario = mongoose.model("usuario", usuarioSchema);
 export default Usuario;

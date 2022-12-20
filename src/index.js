@@ -21,9 +21,11 @@ app.listen(app.get("port"), () => {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.use("/apicodercoffe/productos", productoRuter);
 app.use("/apicodercoffe/auth", authRouter);
 app.use("/apicodercoffe/pedidos", pedidoRuter);
+app.use('/apicodercoffe', pedidoRuter)
+
