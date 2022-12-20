@@ -5,7 +5,11 @@ import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
 import productoRuter from './routes/productos.routes'
+
 import pedidoRuter from './routes/pedidos.routes'
+
+import authRouter from './routes/usuarios.routes'
+
 import './database/database';
 
 const app = express();
@@ -21,6 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../public')))
-
-app.use('/apicodercoffe', productoRuter)
 app.use('/apicodercoffe', pedidoRuter)
+app.use('/apicodercoffe/productos', productoRuter);
+app.use('/apicodercoffe/auth',authRouter)
+
