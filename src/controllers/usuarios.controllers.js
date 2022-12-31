@@ -1,8 +1,9 @@
 import Usuario from "../models/usuarios";
 import { validationResult } from "express-validator";
-import bcrypt from 'bcryptjs';
-import generarJWT from '../helpers/jwt';
-
+import bcrypt from "bcryptjs";
+import generarJWT from "../helpers/jwt";
+import Pedido from "../models/pedido";
+import usuarioFalso from "../../usuario";
 
 export const login = async (req, res) => {
   console.log(req.body)
@@ -26,24 +27,24 @@ export const login = async (req, res) => {
         mensaje: "Correo o password invalido - correo",
       });
     }
-   
+
     // desencriptar el password
-    const passwordValido = bcrypt.compareSync(password, usuario.password)
-// si no es valido el password
+    const passwordValido = bcrypt.compareSync(password, usuario.password);
+    // si no es valido el password
     if (!passwordValido) {
       return res.status(400).json({
         mensaje: "Correo o password invalido - password",
       });
     }
     //generar el token
-    const token = await generarJWT(usuario._id, usuario.nombre)
+    const token = await generarJWT(usuario._id, usuario.nombre);
 
     //responder que el usuario es correcto
     res.status(200).json({
       mensaje: "El usuario existe",
       uid: usuario._id,
       nombre: usuario.nombre,
-      token
+      token,
     });
   } catch (error) {
     console.log(error);
@@ -81,9 +82,10 @@ export const crearUsuario = async (req, res) => {
     usuario = new Usuario(req.body);
     //encriptar contraseña
     const salt = bcrypt.genSaltSync();
-    usuario.password = bcrypt.hashSync(password, salt)
+    usuario.password = bcrypt.hashSync(password, salt);
 
     await usuario.save();
+    
 
     res.status(201).json({
       mensaje: "usuario creado",
@@ -96,6 +98,13 @@ export const crearUsuario = async (req, res) => {
       mensaje: "El usuario no pudo ser creado",
     });
   }
+
+  let pedido = new Pedido({
+    nombreUsuario: usuarioFalso.nombreUsuario,
+    pedido: [],
+    total: 0,
+  });
+  await pedido.save()
 };
 
 export const listarUsuarios = async (req, res) => {

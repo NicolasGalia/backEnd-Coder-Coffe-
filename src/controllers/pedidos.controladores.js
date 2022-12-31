@@ -1,16 +1,10 @@
-import Pedidos from '../models/pedidos';
+import PedidoEnviado from '../models/pedidoEnviado';
 import{validationResult} from 'express-validator';
 
 export const generarPedidos = async (req, res) => {
-    try { 
-      const errors = validationResult(req);
-  if(!errors.isEmpty()){
-  return res.status(400).json({
-      errors: errors.array()
-  })
-  }
-      const pedidosNuevo = new Pedidos(req.body);
-      await pedidosNuevo.save();
+    try {
+      const pedidoEnviadoNuevo = new PedidoEnviado(req.body);
+      await pedidoEnviadoNuevo.save();
   
       res.status(201).json({
         mensaje: "El pedido fue enviado correctamente",

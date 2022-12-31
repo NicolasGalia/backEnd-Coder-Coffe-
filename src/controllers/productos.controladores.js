@@ -12,6 +12,8 @@ const Productos = await Producto.find();
     res.status(404).json({mensaje: 'Error al buscar los productos'})
 
   }
+  
+      
 };
 
 export const obtenerProductos = async (req, res) => {
