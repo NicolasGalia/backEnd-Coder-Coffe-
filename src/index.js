@@ -8,7 +8,6 @@ import productoRuter from "./routes/productos.routes";
 import authRouter from "./routes/usuarios.routes";
 import pedidoRuter from "./routes/pedidos.routes";
 import "./database/database";
-import { consultarPedido } from "./controllers/pedido.controladores";
 
 const app = express();
 
