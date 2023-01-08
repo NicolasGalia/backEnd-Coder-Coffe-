@@ -81,8 +81,8 @@ export const crearUsuario = async (req, res) => {
     //guardamos el nuevo usuario en la BD
     usuario = new Usuario(req.body);
     //encriptar contraseña
-    const salt = bcrypt.genSaltSync();
-    usuario.password = bcrypt.hashSync(password, salt);
+      // const salt = bcrypt.genSaltSync();
+      // usuario.password = bcrypt.hashSync(password, salt);
 
     await usuario.save();
     
@@ -99,12 +99,15 @@ export const crearUsuario = async (req, res) => {
     });
   }
 
+  const { userName } = req.body;
+
   let pedido = new Pedido({
-    nombreUsuario: usuarioFalso.nombreUsuario,
+    nombreUsuario: userName,
     pedido: [],
     total: 0,
   });
   await pedido.save()
+  console.log(userName)
 };
 
 export const listarUsuarios = async (req, res) => {
