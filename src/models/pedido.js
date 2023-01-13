@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const pedidoSchema = new Schema({
-  nombreUsuario: {
+  email: {
     type: String,
     required: true,
     maxLength: 50,

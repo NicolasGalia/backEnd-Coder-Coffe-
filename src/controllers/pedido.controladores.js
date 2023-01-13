@@ -1,6 +1,5 @@
 import Pedido from "../models/pedido";
 import{validationResult} from 'express-validator';
-import usuarioFalso from "../../usuario";
 
 export const consultarPedido = async (req, res) => {
     try {
