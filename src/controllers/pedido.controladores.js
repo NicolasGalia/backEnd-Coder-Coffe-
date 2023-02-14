@@ -1,12 +1,22 @@
 import Pedido from "../models/pedido";
 import{validationResult} from 'express-validator';
-import usuarioFalso from "../../usuario";
 
 export const consultarPedido = async (req, res) => {
     try {
   
       let pedidoBD = await Pedido.findOne(req.body);
       res.status(200).json(pedidoBD);
+    } catch (error) {
+      console.log(error);
+      res.status(404).json({mensaje: 'Error al consultar pedido'})
+    }
+  };
+
+export const consultarTodosPedido = async (req, res) => {
+    try {
+  
+      let pedidoTodosBD = await Pedido.find();
+      res.status(200).json(pedidoTodosBD);
     } catch (error) {
       console.log(error);
       res.status(404).json({mensaje: 'Error al consultar pedido'})

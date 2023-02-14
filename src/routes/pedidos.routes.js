@@ -3,6 +3,7 @@ import { Router } from "express";
 import { check } from "express-validator";
 import {
   consultarPedido,
+  consultarTodosPedido,
   editarPedido,
   generarPedido,
   limpiarPedido,
@@ -17,6 +18,10 @@ router
   .post(generarPedidos
     
   );
+
+router
+  .route("/todos")
+  .get(consultarTodosPedido);
 
 router.route("/:id").put(editarPedido);
 
