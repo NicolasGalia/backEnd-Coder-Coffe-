@@ -4,7 +4,9 @@ import{validationResult} from 'express-validator';
 export const consultarPedido = async (req, res) => {
     try {
   
-      let pedidoBD = await Pedido.findOne(req.body);
+      // let pedidoBD = await Pedido.findOne(req.body);
+      // res.status(200).json(pedidoBD);
+      let pedidoBD = await Pedido.find();
       res.status(200).json(pedidoBD);
     } catch (error) {
       console.log(error);
