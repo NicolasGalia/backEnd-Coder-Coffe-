@@ -7,8 +7,6 @@ import {
   borrarProducto,
 } from "../controllers/productos.controladores";
 import { check } from "express-validator";
-import { consultarPedido } from "../controllers/pedido.controladores";
-// import validarJWT from "../helpers/validar-jwt";
 
 const router = Router();
 

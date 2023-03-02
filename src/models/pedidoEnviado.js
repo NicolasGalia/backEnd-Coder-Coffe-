@@ -9,6 +9,18 @@ const pedidoEnviadoSchema = new Schema({
       },
     
       pedido: [
+        {
+          nombre: {
+            type: String,
+            maxLength: 60,
+            minLength: 2,
+          },
+          precio: {
+            type: Number,
+            min: 20,
+            max: 10000,
+          },
+        },
       ],
       total: {
         type: Number,

@@ -38,6 +38,10 @@ const usuarioSchema = new Schema({
         required: true,
         minLength: 8,
         maxLength: 61
+    },
+    admin: {
+        type: Boolean,
+        default: false,
     }
 });
 

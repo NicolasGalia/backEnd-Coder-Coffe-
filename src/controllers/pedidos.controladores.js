@@ -17,6 +17,16 @@ export const generarPedidos = async (req, res) => {
     }
   };
 
+  export const consultarPedido = async (req, res) => {
+    try {
+      let pedidoBD = await PedidoEnviado.find();
+      res.status(200).json(pedidoBD);
+    } catch (error) {
+      console.log(error);
+      res.status(404).json({mensaje: 'Error al consultar pedido'})
+    }
+  };
+
   export const editarPedidos  = async (req, res) => {
     try {
     await Producto.findByIdAndUpdate(req.params.id, req.body)

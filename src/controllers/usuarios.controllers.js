@@ -2,7 +2,6 @@ import Usuario from "../models/usuarios";
 import { validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 import generarJWT from "../helpers/jwt";
-import Pedido from "../models/pedido";
 
 export const login = async (req, res) => {
   console.log(req.body)
@@ -36,13 +35,13 @@ export const login = async (req, res) => {
       });
     }
     //generar el token
-    // const token = await generarJWT(usuario._id, usuario.nombre);
+    const token = await generarJWT(usuario._id, usuario.nombre);
 
     //responder que el usuario es correcto
     res.status(200).json({
       mensaje: "El usuario existe",
-      usuario: usuario
-      // token,
+      usuario,
+      token,
     });
   } catch (error) {
     console.log(error);
@@ -96,15 +95,6 @@ export const crearUsuario = async (req, res) => {
       mensaje: "El usuario no pudo ser creado",
     });
   }
-
-  const { email } = req.body;
-
-  let pedido = new Pedido({
-    email: email,
-    pedido: [],
-    total: 0,
-  });
-  await pedido.save()
 };
 
 export const listarUsuarios = async (req, res) => {
