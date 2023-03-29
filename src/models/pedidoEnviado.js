@@ -20,6 +20,11 @@ const pedidoEnviadoSchema = new Schema({
             min: 20,
             max: 10000,
           },
+          cantidad: {
+            type: Number,
+            min: 1,
+            max: 10000
+          }
         },
       ],
       total: {
