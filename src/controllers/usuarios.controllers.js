@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import generarJWT from "../helpers/jwt";
 
 export const login = async (req, res) => {
-  console.log(req.body)
+  
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -44,7 +44,7 @@ export const login = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(error);
+   
     res.status(400).json({
       mensaje: "usuario o contraseña invalido",
     });
@@ -57,7 +57,7 @@ export const crearUsuario = async (req, res) => {
     const errors = validationResult(req);
     // errors.isEmpty() devuelve false si hay errores
     if (!errors.isEmpty()) {
-      console.log(errors)
+     
       return res.status(400).json({
         errors: errors.array(),
       });
@@ -90,7 +90,7 @@ export const crearUsuario = async (req, res) => {
       uid: usuario._id,
     });
   } catch (error) {
-    console.log(error);
+    
     res.status(400).json({
       mensaje: "El usuario no pudo ser creado",
     });
@@ -111,7 +111,7 @@ export const obtenerUsuarios = async (req, res) => {
   try {
       const id = req.params._id;
     const usuarioBuscado = await Usuario.findById(id);
-    console.log(usuarioBuscado)
+   
     res.status(200).json(usuarioBuscado);
 
   } catch (error) {
@@ -127,7 +127,7 @@ export const borrarUsuarios  = async (req, res) => {
       mensaje: 'el usuario fue borrado exitosamente'
   })
   } catch (error) {
-      console.log(error);
+      
       res.status(404).json({ 
           mensaje: 'error al intentar borrar un usuario'
       })

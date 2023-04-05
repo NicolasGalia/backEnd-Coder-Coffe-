@@ -10,7 +10,7 @@ export const generarPedidos = async (req, res) => {
         mensaje: "El pedido fue enviado correctamente",
       });
     } catch (error) {
-      console.log(error);
+      
       res
         .status(404)
         .json({ mensaje: "Error al enviar el pedido" });
@@ -22,7 +22,7 @@ export const generarPedidos = async (req, res) => {
       let pedidoBD = await PedidoEnviado.find();
       res.status(200).json(pedidoBD);
     } catch (error) {
-      console.log(error);
+    
       res.status(404).json({mensaje: 'Error al consultar pedido'})
     }
   };
@@ -34,7 +34,7 @@ export const generarPedidos = async (req, res) => {
         mensaje: 'El pedido fue editado correctamente'
     })
     } catch (error) {
-        console.log(error);
+       
         res.status(400).json({ 
             mensaje: 'Error al intentar editar pedido'
         })

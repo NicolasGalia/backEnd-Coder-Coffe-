@@ -8,7 +8,7 @@ const Productos = await Producto.find();
     res.status(200).json(Productos);
   } catch (error) {
 
-    console.log(error);
+   
     res.status(404).json({mensaje: 'Error al buscar los productos'})
 
   }
@@ -20,12 +20,12 @@ export const obtenerProductos = async (req, res) => {
     try {
         const id = req.params._id;
       const productoBuscado = await Producto.findById(id);
-      console.log(productoBuscado)
+    
       res.status(200).json(productoBuscado);
   
     } catch (error) {
 
-      console.log(error);
+    
       res.status(404).json({mensaje: 'Error al buscar los producto'})
 
     }
@@ -47,7 +47,7 @@ export const obtenerProductos = async (req, res) => {
         mensaje: "El producto fue creado correctamente",
       });
     } catch (error) {
-      console.log(error);
+      
       res
         .status(404)
         .json({ mensaje: "Error al intentar agregar un nuevo producto" });
@@ -61,7 +61,7 @@ export const obtenerProductos = async (req, res) => {
         mensaje: 'El producto fue editado correctamente'
     })
     } catch (error) {
-        console.log(error);
+        
         res.status(400).json({ 
             mensaje: 'Error al intentar editar un producto'
         })
@@ -75,7 +75,7 @@ export const borrarProducto  = async (req, res) => {
             mensaje: 'El producto fue borrado exitosamente'
         })
         } catch (error) {
-            console.log(error);
+           
             res.status(404).json({ 
                 mensaje: 'Error al intentar borrar un producto'
             })
